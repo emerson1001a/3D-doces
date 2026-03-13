@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Doces</title>
+  <meta name="theme-color" content="#2D9CBE" />
   <style>
     :root{
       --brand:#4DB6D6;
@@ -12,7 +13,7 @@
       --accent:#FF8A00;
       --accent-soft:#FFF0DF;
       --bg:#F7FCFF;
-      --bg2:#FFF7FA;
+      --bg2:#FFF9FC;
       --text:#1F2D36;
       --muted:#647684;
       --card:#FFFFFF;
@@ -23,7 +24,7 @@
       --radius-lg:20px;
       --radius-md:14px;
       --radius-sm:10px;
-      --max:1280px;
+      --max:1260px;
     }
 
     *{box-sizing:border-box}
@@ -34,19 +35,19 @@
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(77,182,214,.12), transparent 26%),
-        radial-gradient(circle at top right, rgba(255,138,0,.10), transparent 20%),
-        linear-gradient(180deg, var(--bg) 0%, #F8FCFF 40%, var(--bg2) 100%);
+        radial-gradient(circle at top right, rgba(255,138,0,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg) 0%, #ffffff 60%, var(--bg2) 100%);
     }
 
     img{display:block;max-width:100%}
     a{text-decoration:none;color:inherit}
-    button,input{font-family:inherit}
+    button,input,textarea{font-family:inherit}
+
     .container{
       width:min(var(--max), 92%);
       margin:0 auto;
     }
 
-    /* HEADER */
     .header{
       position:sticky;
       top:0;
@@ -63,6 +64,7 @@
       justify-content:space-between;
       gap:18px;
       flex-wrap:wrap;
+      padding:8px 0;
     }
 
     .brand{
@@ -72,14 +74,15 @@
     }
 
     .brand-icon{
-      width:74px;
-      height:74px;
+      width:76px;
+      height:76px;
       border-radius:18px;
       background:linear-gradient(135deg, var(--brand), #79D8F2);
       padding:6px;
       box-shadow:var(--shadow-soft);
       overflow:hidden;
       flex-shrink:0;
+      animation:floatMascot 2.8s ease-in-out infinite alternate;
     }
 
     .brand-icon img{
@@ -88,6 +91,11 @@
       object-fit:contain;
       border-radius:14px;
       background:rgba(255,255,255,.12);
+    }
+
+    @keyframes floatMascot{
+      from{transform:translateY(0)}
+      to{transform:translateY(-6px)}
     }
 
     .brand-text h1{
@@ -111,15 +119,21 @@
       flex-wrap:wrap;
     }
 
-    .nav a{
+    .nav a,
+    .nav button{
       padding:12px 14px;
       border-radius:999px;
       font-weight:800;
       color:#37515E;
       transition:.18s ease;
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      font-size:14px;
     }
 
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background:var(--brand-soft);
       color:var(--brand-dark);
     }
@@ -130,20 +144,19 @@
       box-shadow:var(--shadow-soft);
     }
 
-    /* HERO */
     .hero{
-      padding:34px 0 22px;
+      padding:28px 0 22px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.15fr .85fr;
+      grid-template-columns:1.1fr .9fr;
       gap:24px;
       align-items:stretch;
     }
 
     .hero-main,.hero-side{
-      background:rgba(255,255,255,.94);
+      background:rgba(255,255,255,.96);
       border-radius:var(--radius-xl);
       box-shadow:var(--shadow);
       border:1px solid rgba(77,182,214,.12);
@@ -189,7 +202,7 @@
 
     .hero h2{
       margin:18px 0 14px;
-      font-size:clamp(34px, 6vw, 64px);
+      font-size:clamp(36px, 6vw, 64px);
       line-height:1.02;
       letter-spacing:-1.2px;
       max-width:12ch;
@@ -229,12 +242,10 @@
       box-shadow:var(--shadow-soft);
     }
 
-    .btn-primary:hover{filter:brightness(.97)}
     .btn-secondary{
       background:var(--accent-soft);
       color:#B76400;
     }
-    .btn-secondary:hover{background:#ffe4c1}
 
     .hero-stats{
       display:grid;
@@ -271,34 +282,35 @@
       justify-content:space-between;
     }
 
-    .side-top{
-      display:flex;
-      gap:14px;
+    .hero-mascot{
+      display:grid;
+      grid-template-columns:130px 1fr;
+      gap:16px;
       align-items:center;
     }
 
-    .side-mascot{
-      width:96px;
-      height:96px;
-      border-radius:20px;
+    .hero-mascot-image{
+      width:130px;
+      height:130px;
+      border-radius:24px;
       background:linear-gradient(135deg, var(--brand-soft), #fff);
-      padding:8px;
-      overflow:hidden;
+      padding:10px;
       border:1px solid rgba(77,182,214,.14);
+      animation:floatMascot 2.8s ease-in-out infinite alternate;
     }
 
-    .side-mascot img{
+    .hero-mascot-image img{
       width:100%;
       height:100%;
       object-fit:contain;
     }
 
-    .side-copy h3{
+    .hero-mascot-copy h3{
       margin:0 0 8px;
       font-size:24px;
     }
 
-    .side-copy p{
+    .hero-mascot-copy p{
       margin:0;
       color:var(--muted);
       line-height:1.6;
@@ -323,7 +335,6 @@
       line-height:1.8;
     }
 
-    /* LAYOUT */
     .layout{
       display:grid;
       grid-template-columns:1fr 360px;
@@ -332,7 +343,15 @@
       padding:10px 0 40px;
     }
 
-    /* SECTION HEAD */
+    .section-card{
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(77,182,214,.12);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      margin-bottom:22px;
+    }
+
     .section-head{
       display:flex;
       justify-content:space-between;
@@ -365,7 +384,6 @@
       box-shadow:var(--shadow-soft);
     }
 
-    /* PRODUCTS */
     .products-grid{
       display:grid;
       grid-template-columns:repeat(2, 1fr);
@@ -373,7 +391,7 @@
     }
 
     .product{
-      background:rgba(255,255,255,.95);
+      background:rgba(255,255,255,.97);
       border:1px solid rgba(77,182,214,.12);
       border-radius:22px;
       overflow:hidden;
@@ -401,6 +419,11 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      transition:transform .25s ease;
+    }
+
+    .product:hover .product-media img{
+      transform:scale(1.04);
     }
 
     .product-body{
@@ -447,7 +470,6 @@
       font-size:28px;
       font-weight:900;
       color:var(--brand-dark);
-      letter-spacing:-.5px;
     }
 
     .add-btn{
@@ -461,9 +483,98 @@
       white-space:nowrap;
     }
 
-    .add-btn:hover{filter:brightness(.97)}
+    .featured-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
 
-    /* SIDEBAR CART */
+    .featured-box{
+      background:#fff;
+      border:1px solid rgba(77,182,214,.10);
+      border-radius:20px;
+      box-shadow:var(--shadow-soft);
+      overflow:hidden;
+    }
+
+    .featured-box img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .featured-box .content{
+      padding:18px;
+    }
+
+    .featured-box h4{
+      margin:0 0 8px;
+      font-size:24px;
+    }
+
+    .featured-box p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .featured-badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff3dd;
+      color:#b76400;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+
+    .gallery img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:16px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .review{
+      background:#fff;
+      border:1px solid rgba(77,182,214,.10);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .review .stars{
+      color:#ffb400;
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .review p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .review strong{
+      display:block;
+      margin-top:10px;
+      font-size:14px;
+    }
+
     .sidebar{
       position:sticky;
       top:108px;
@@ -475,7 +586,7 @@
     .cart,
     .about-box,
     .contact-box{
-      background:rgba(255,255,255,.96);
+      background:rgba(255,255,255,.97);
       border:1px solid rgba(77,182,214,.12);
       border-radius:24px;
       box-shadow:var(--shadow);
@@ -485,6 +596,10 @@
     .cart-head{
       padding:20px 20px 14px;
       border-bottom:1px solid rgba(77,182,214,.10);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
     }
 
     .cart-head h4{
@@ -496,6 +611,21 @@
       margin:8px 0 0;
       color:var(--muted);
       line-height:1.5;
+      font-size:14px;
+    }
+
+    .cart-badge{
+      min-width:28px;
+      height:28px;
+      padding:0 8px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--accent);
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
     }
 
     .cart-list{
@@ -503,7 +633,7 @@
       display:flex;
       flex-direction:column;
       gap:12px;
-      max-height:320px;
+      max-height:260px;
       overflow:auto;
     }
 
@@ -582,6 +712,39 @@
       color:var(--brand-dark);
     }
 
+    .field{
+      margin-bottom:10px;
+    }
+
+    .field label{
+      display:block;
+      margin-bottom:6px;
+      font-size:13px;
+      font-weight:800;
+      color:#45606d;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(77,182,214,.18);
+      font-size:14px;
+      outline:none;
+    }
+
+    .field textarea{
+      min-height:86px;
+      resize:vertical;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
     .checkout{
       width:100%;
       border:none;
@@ -594,8 +757,6 @@
       cursor:pointer;
       box-shadow:var(--shadow-soft);
     }
-
-    .checkout:hover{filter:brightness(.97)}
 
     .clear-cart{
       width:100%;
@@ -610,7 +771,6 @@
       margin-top:10px;
     }
 
-    /* SIDE BOXES */
     .about-box,
     .contact-box{
       padding:20px;
@@ -648,21 +808,34 @@
       color:#35515e;
     }
 
-    /* FOOTER */
-    .footer{
-      margin-top:24px;
-      padding:26px 0 36px;
-      text-align:center;
-      color:var(--muted);
+    .toast{
+      position:fixed;
+      left:50%;
+      top:24px;
+      transform:translateX(-50%) translateY(-16px);
+      background:#1f2d36;
+      color:#fff;
+      padding:14px 18px;
+      border-radius:14px;
+      font-weight:800;
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      z-index:150;
     }
 
-    /* FLOATING WHATSAPP */
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
     .wa-float{
       position:fixed;
       right:20px;
       bottom:20px;
-      width:64px;
-      height:64px;
+      width:68px;
+      height:68px;
       border-radius:50%;
       display:flex;
       align-items:center;
@@ -674,9 +847,13 @@
       z-index:120;
     }
 
-    .wa-float:hover{filter:brightness(.97)}
+    .footer{
+      margin-top:10px;
+      padding:20px 0 36px;
+      text-align:center;
+      color:var(--muted);
+    }
 
-    /* RESPONSIVE */
     @media (max-width: 1100px){
       .layout{
         grid-template-columns:1fr;
@@ -689,11 +866,21 @@
     @media (max-width: 900px){
       .hero-grid,
       .hero-stats,
-      .products-grid{
+      .products-grid,
+      .featured-grid,
+      .gallery,
+      .reviews{
         grid-template-columns:1fr;
       }
       .hero h2{
         max-width:none;
+      }
+      .hero-mascot{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+      .hero-mascot-image{
+        margin:0 auto;
       }
     }
 
@@ -721,15 +908,20 @@
       .price{
         font-size:24px;
       }
+      .grid-2{
+        grid-template-columns:1fr;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="toast" class="toast">Item adicionado ao carrinho.</div>
+
   <header class="header">
     <div class="container header-inner">
       <div class="brand">
         <div class="brand-icon">
-          <img src="mascote.png" alt="Mascote 3D Doces" onerror="this.style.display='none'">
+          <img src="tucano.png" alt="Mascote 3D Doces">
         </div>
         <div class="brand-text">
           <h1>3D Doces</h1>
@@ -738,10 +930,12 @@
       </div>
 
       <nav class="nav">
-        <a href="#catalogo">Produtos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-        <a class="cta" href="https://instagram.com/3d_doces.ofc" target="_blank">Instagram</a>
+        <button onclick="scrollToSection('catalogo')">Produtos</button>
+        <button onclick="scrollToSection('destaques')">Destaques</button>
+        <button onclick="scrollToSection('galeria')">Galeria</button>
+        <button onclick="scrollToSection('avaliacoes')">Avaliações</button>
+        <a href="https://instagram.com/3d_doces.ofc" target="_blank">Instagram</a>
+        <a class="cta" href="https://wa.me/5511997510976" target="_blank">WhatsApp</a>
       </nav>
     </div>
   </header>
@@ -750,19 +944,19 @@
     <div class="container hero-grid">
       <div class="hero-main">
         <span class="pill">Loja online pronta para vender</span>
-        <h2>Seu doce favorito, com visual de marca grande.</h2>
+        <h2>Seu doce favorito, com cara de marca forte.</h2>
         <p>
-          A 3D Doces agora tem presença de verdade: vitrine forte, identidade clara, pedido rápido e um visual muito mais profissional. Escolha os produtos, monte seu carrinho e finalize no WhatsApp.
+          A 3D Doces agora tem uma vitrine digital mais bonita, mais organizada e muito mais profissional. Escolha seus produtos, monte o carrinho e envie o pedido direto no WhatsApp.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
-          <a class="btn btn-secondary" href="https://instagram.com/3d_doces.ofc" target="_blank">Seguir no Instagram</a>
+          <button class="btn btn-primary" onclick="scrollToSection('catalogo')">Ver catálogo</button>
+          <a class="btn btn-secondary" href="https://instagram.com/3d_doces.ofc" target="_blank">Ir para o Instagram</a>
         </div>
 
         <div class="hero-stats">
           <div class="stat">
-            <strong>10</strong>
+            <strong>8</strong>
             <span>produtos no catálogo</span>
           </div>
           <div class="stat">
@@ -770,31 +964,32 @@
             <span>para adicionar ao carrinho</span>
           </div>
           <div class="stat">
-            <strong>WhatsApp</strong>
-            <span>pedido final instantâneo</span>
+            <strong id="heroCount">0</strong>
+            <span>itens no carrinho</span>
           </div>
         </div>
       </div>
 
       <aside class="hero-side">
-        <div class="side-top">
-          <div class="side-mascot">
-            <img src="mascote.png" alt="Mascote" onerror="this.style.display='none'">
+        <div class="hero-mascot">
+          <div class="hero-mascot-image">
+            <img src="tucano.png" alt="Mascote 3D Doces">
           </div>
-          <div class="side-copy">
-            <h3>3D Doces</h3>
-            <p>Uma marca jovem, forte e visualmente marcante, com a cor da forminha azul como assinatura.</p>
+          <div class="hero-mascot-copy">
+            <h3>Nosso mascote</h3>
+            <p>Agora o site usa o tucano certo da marca e isso deixa tudo mais coerente e profissional.</p>
           </div>
         </div>
 
         <div class="side-card">
-          <h4>O que esse site já faz</h4>
+          <h4>O que essa versão final entrega</h4>
           <ul class="side-list">
-            <li>Catálogo bonito e moderno</li>
-            <li>Carrinho com total automático</li>
-            <li>Finalização pelo WhatsApp</li>
-            <li>Instagram integrado</li>
-            <li>Layout de marca grande</li>
+            <li>Mascote correto da marca</li>
+            <li>Produtos com nomes e fotos coerentes</li>
+            <li>Destaque do mais vendido</li>
+            <li>Caixas e combos em evidência</li>
+            <li>Encomendas para festas</li>
+            <li>Pedido completo no WhatsApp</li>
           </ul>
         </div>
       </aside>
@@ -803,22 +998,145 @@
 
   <main class="container layout">
     <section>
-      <div id="catalogo" class="section-head">
-        <div>
-          <h3>Nossos doces</h3>
-          <p>Escolha seus produtos e monte o pedido.</p>
+      <div id="destaques" class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Destaques da loja</h3>
+            <p>O que vende melhor e o que chama mais atenção.</p>
+          </div>
         </div>
-        <input id="search" class="search" type="text" placeholder="Buscar produto..." />
+
+        <div class="featured-grid">
+          <div class="featured-box">
+            <img src="brigadeiro.jpg" alt="Brigadeiro Tradicional">
+            <div class="content">
+              <span class="featured-badge">Mais vendido</span>
+              <h4>Brigadeiro Tradicional</h4>
+              <p>O clássico que quase todo mundo procura primeiro. Ideal para puxar venda rápida.</p>
+              <strong style="color:#2D9CBE;font-size:24px;">R$ 4,50</strong>
+            </div>
+          </div>
+
+          <div class="featured-box">
+            <img src="kit-festa.jpg" alt="Kit Festa">
+            <div class="content">
+              <span class="featured-badge">Encomendas</span>
+              <h4>Kit Festa</h4>
+              <p>Perfeito para aniversários, encontros e comemorações. Ótimo para ticket maior.</p>
+              <strong style="color:#2D9CBE;font-size:24px;">R$ 120,00</strong>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div id="productsGrid" class="products-grid"></div>
+      <div id="catalogo" class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Nosso catálogo</h3>
+            <p>Escolha seus produtos e monte o pedido.</p>
+          </div>
+          <input id="search" class="search" type="text" placeholder="Buscar produto..." />
+        </div>
+
+        <div id="productsGrid" class="products-grid"></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Combos e caixas</h3>
+            <p>Seção criada para puxar pedido maior.</p>
+          </div>
+        </div>
+
+        <div class="featured-grid">
+          <div class="featured-box">
+            <img src="caixa-12.jpg" alt="Caixa 12 Doces">
+            <div class="content">
+              <span class="featured-badge">Presente</span>
+              <h4>Caixa 12 Doces</h4>
+              <p>Ótima para presentear, dividir em casa ou vender como lembrança especial.</p>
+              <strong style="color:#2D9CBE;font-size:24px;">R$ 45,00</strong>
+            </div>
+          </div>
+
+          <div class="featured-box">
+            <img src="caixa-24.jpg" alt="Caixa 24 Doces">
+            <div class="content">
+              <span class="featured-badge">Festa</span>
+              <h4>Caixa 24 Doces</h4>
+              <p>Mais quantidade para encontros, eventos e clientes que querem levar variedade.</p>
+              <strong style="color:#2D9CBE;font-size:24px;">R$ 85,00</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="galeria" class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Galeria</h3>
+            <p>Mostre sua apresentação visual.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <img src="brigadeiro.jpg" alt="Brigadeiro">
+          <img src="beijinho.jpg" alt="Beijinho">
+          <img src="brownie.jpg" alt="Brownie">
+          <img src="bolo-pote.jpg" alt="Bolo no pote">
+        </div>
+      </div>
+
+      <div id="avaliacoes" class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Avaliações</h3>
+            <p>Isso aumenta confiança e vontade de comprar.</p>
+          </div>
+        </div>
+
+        <div class="reviews">
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>Doces muito bonitos e saborosos. Atendimento rápido e caprichado.</p>
+            <strong>Cliente 1</strong>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>Gostei muito da apresentação e da facilidade para fazer o pedido.</p>
+            <strong>Cliente 2</strong>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>Perfeito para presentear e para festas. Ficou com cara de marca forte.</p>
+            <strong>Cliente 3</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h3>Encomendas para festas</h3>
+            <p>Seção importante para vender mais.</p>
+          </div>
+        </div>
+
+        <p style="margin:0;color:var(--muted);line-height:1.8">
+          Fazemos encomendas para aniversários, encontros, lembranças e eventos. Para orçamentos maiores, escolha os produtos no site e envie o pedido com data e horário desejados no WhatsApp.
+        </p>
+      </div>
     </section>
 
     <aside class="sidebar">
       <div class="cart">
         <div class="cart-head">
-          <h4>Carrinho</h4>
-          <p>Veja seus itens e finalize o pedido direto no WhatsApp.</p>
+          <div>
+            <h4>Carrinho</h4>
+            <p>Veja seus itens e finalize o pedido direto no WhatsApp.</p>
+          </div>
+          <div id="cartBadge" class="cart-badge">0</div>
         </div>
 
         <div id="cartList" class="cart-list">
@@ -831,23 +1149,78 @@
             <strong id="cartTotal">R$ 0,00</strong>
           </div>
 
-          <button class="checkout" onclick="checkout()">
-            Finalizar pedido
-          </button>
-          <button class="clear-cart" onclick="clearCart()">
-            Limpar carrinho
-          </button>
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" placeholder="Seu nome">
+          </div>
+
+          <div class="field">
+            <label for="telefone">Telefone</label>
+            <input id="telefone" placeholder="Seu telefone / WhatsApp">
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="rua">Rua</label>
+              <input id="rua" placeholder="Rua / Avenida">
+            </div>
+            <div class="field">
+              <label for="numero">Número</label>
+              <input id="numero" placeholder="Número">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="bairro">Bairro</label>
+              <input id="bairro" placeholder="Bairro">
+            </div>
+            <div class="field">
+              <label for="cidade">Cidade</label>
+              <input id="cidade" placeholder="Cidade">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="cep">CEP</label>
+              <input id="cep" placeholder="CEP">
+            </div>
+            <div class="field">
+              <label for="complemento">Complemento</label>
+              <input id="complemento" placeholder="Casa, apto, bloco...">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="dataEntrega">Data</label>
+              <input type="date" id="dataEntrega">
+            </div>
+            <div class="field">
+              <label for="horaEntrega">Hora</label>
+              <input type="time" id="horaEntrega">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="obs">Observações</label>
+            <textarea id="obs" placeholder="Ponto de referência, detalhes do pedido..."></textarea>
+          </div>
+
+          <button class="checkout" onclick="checkout()">Finalizar pedido</button>
+          <button class="clear-cart" onclick="clearCart()">Limpar carrinho</button>
         </div>
       </div>
 
-      <div id="sobre" class="about-box">
+      <div class="about-box">
         <h4>Sobre a 3D Doces</h4>
         <p>
-          A 3D Doces nasceu de uma ideia que foi crescendo, evoluindo e ganhando forma. O mascote e a identidade visual ajudam a transformar o projeto em algo memorável. Depois vocês podem me mandar o texto oficial e eu deixo essa parte perfeita.
+          A 3D Doces une sabor, apresentação e identidade forte. Esta versão do site foi pensada para parecer mais profissional, coerente com a marca e mais vendedora.
         </p>
       </div>
 
-      <div id="contato" class="contact-box">
+      <div class="contact-box">
         <h4>Contato</h4>
         <div class="line">
           <a class="contact-link" href="https://instagram.com/3d_doces.ofc" target="_blank">
@@ -856,9 +1229,9 @@
           <a class="contact-link" href="https://wa.me/5511997510976" target="_blank">
             📱 +55 11 99751-0976
           </a>
-          <div class="contact-link">
-            🎨 Cor da marca: azul da forminha
-          </div>
+          <a class="contact-link" href="tel:+5511997510976">
+            📞 Ligar
+          </a>
         </div>
       </div>
     </aside>
@@ -880,7 +1253,7 @@
         category: "Mais vendido",
         description: "Brigadeiro clássico, macio e coberto com granulado.",
         price: 4.50,
-        image: "brigadeiro.png"
+        image: "brigadeiro.jpg"
       },
       {
         id: 2,
@@ -888,7 +1261,7 @@
         category: "Clássico",
         description: "Beijinho cremoso com coco e acabamento delicado.",
         price: 4.50,
-        image: "brigadeiro.png"
+        image: "beijinho.jpg"
       },
       {
         id: 3,
@@ -896,15 +1269,15 @@
         category: "Chocolate",
         description: "Brownie macio por dentro e intenso no sabor.",
         price: 8.00,
-        image: "brigadeiro.png"
+        image: "brownie.jpg"
       },
       {
         id: 4,
         name: "Bolo no Pote",
         category: "Queridinho",
-        description: "Camadas de massa e recheio, ótimo para vender muito.",
+        description: "Camadas de massa e recheio com ótima apresentação.",
         price: 12.00,
-        image: "brigadeiro.png"
+        image: "bolo-pote.jpg"
       },
       {
         id: 5,
@@ -912,7 +1285,7 @@
         category: "Premium",
         description: "Trufa recheada com sabor marcante e apresentação bonita.",
         price: 6.00,
-        image: "brigadeiro.png"
+        image: "trufa.jpg"
       },
       {
         id: 6,
@@ -920,7 +1293,7 @@
         category: "Presente",
         description: "Perfeita para presentear ou dividir em família.",
         price: 45.00,
-        image: "brigadeiro.png"
+        image: "caixa-12.jpg"
       },
       {
         id: 7,
@@ -928,31 +1301,15 @@
         category: "Festa",
         description: "Mais variedade para encontros e eventos.",
         price: 85.00,
-        image: "brigadeiro.png"
+        image: "caixa-24.jpg"
       },
       {
         id: 8,
-        name: "Cajuzinho",
-        category: "Tradicional",
-        description: "Doce clássico de festa com sabor marcante.",
-        price: 4.50,
-        image: "brigadeiro.png"
-      },
-      {
-        id: 9,
-        name: "Doce de Leite",
-        category: "Cremoso",
-        description: "Doce delicado e saboroso com textura suave.",
-        price: 5.00,
-        image: "brigadeiro.png"
-      },
-      {
-        id: 10,
         name: "Kit Festa",
         category: "Encomenda",
         description: "Kit completo para festas e comemorações.",
         price: 120.00,
-        image: "brigadeiro.png"
+        image: "kit-festa.jpg"
       }
     ];
 
@@ -965,6 +1322,26 @@
       });
     }
 
+    function showToast(text){
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
+    function scrollToSection(id){
+      document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
+    }
+
+    function updateCounts(){
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartBadge").textContent = totalItems;
+      document.getElementById("heroCount").textContent = totalItems;
+    }
+
     function renderProducts(list = products){
       const grid = document.getElementById("productsGrid");
       grid.innerHTML = "";
@@ -974,7 +1351,7 @@
         el.className = "product";
         el.innerHTML = `
           <div class="product-media">
-            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/800x600/e8f9ff/2d9cbe?text=3D+Doces'">
+            <img src="${product.image}" alt="${product.name}" onerror="this.style.opacity='0.2'">
           </div>
           <div class="product-body">
             <span class="chip">${product.category}</span>
@@ -1001,6 +1378,8 @@
       }
 
       renderCart();
+      updateCounts();
+      showToast(product.name + " adicionado ao carrinho.");
     }
 
     function changeQty(productId, delta){
@@ -1014,11 +1393,14 @@
       }
 
       renderCart();
+      updateCounts();
     }
 
     function clearCart(){
       cart = [];
       renderCart();
+      updateCounts();
+      showToast("Carrinho limpo.");
     }
 
     function renderCart(){
@@ -1061,16 +1443,55 @@
         return;
       }
 
-      let message = "Olá! Quero fazer um pedido na 3D Doces.%0A%0A";
+      const nome = document.getElementById("nome").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const rua = document.getElementById("rua").value.trim();
+      const numero = document.getElementById("numero").value.trim();
+      const bairro = document.getElementById("bairro").value.trim();
+      const cidade = document.getElementById("cidade").value.trim();
+      const cep = document.getElementById("cep").value.trim();
+      const complemento = document.getElementById("complemento").value.trim();
+      const data = document.getElementById("dataEntrega").value.trim();
+      const hora = document.getElementById("horaEntrega").value.trim();
+      const obs = document.getElementById("obs").value.trim();
+
+      if(!nome || !telefone){
+        alert("Preencha pelo menos nome e telefone.");
+        return;
+      }
+
+      let lines = [];
+      lines.push("Olá! Quero fazer um pedido na 3D Doces.");
+      lines.push("");
+      lines.push("Cliente: " + nome);
+      lines.push("Telefone: " + telefone);
+      lines.push("");
+      lines.push("Endereço:");
+      lines.push((rua || "Rua não informada") + (numero ? ", " + numero : ""));
+      lines.push((bairro || "Bairro não informado") + (cidade ? " - " + cidade : ""));
+      if(cep) lines.push("CEP: " + cep);
+      if(complemento) lines.push("Complemento: " + complemento);
+      lines.push("");
+      lines.push("Entrega:");
+      if(data) lines.push("Data: " + data);
+      if(hora) lines.push("Hora: " + hora);
+      lines.push("");
+      lines.push("Pedido:");
+
       cart.forEach(item => {
-        message += `• ${item.name} x${item.qty} - ${money(item.price * item.qty)}%0A`;
+        lines.push("• " + item.name + " x" + item.qty + " - " + money(item.price * item.qty));
       });
 
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      message += `%0ATotal estimado: ${money(total)}%0A`;
-      message += `%0AInstagram: @3d_doces.ofc`;
+      lines.push("");
+      lines.push("Total estimado: " + money(total));
 
-      const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(decodeURIComponent(message))}`;
+      if(obs){
+        lines.push("");
+        lines.push("Observações: " + obs);
+      }
+
+      const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join("\n"))}`;
       window.open(url, "_blank");
     }
 
@@ -1088,6 +1509,7 @@
 
     renderProducts();
     renderCart();
+    updateCounts();
   </script>
 </body>
 </html>
