@@ -1,335 +1,1093 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Doces</title>
+  <style>
+    :root{
+      --brand:#4DB6D6;
+      --brand-dark:#2D9CBE;
+      --brand-soft:#EAF8FD;
+      --accent:#FF8A00;
+      --accent-soft:#FFF0DF;
+      --bg:#F7FCFF;
+      --bg2:#FFF7FA;
+      --text:#1F2D36;
+      --muted:#647684;
+      --card:#FFFFFF;
+      --line:rgba(77,182,214,.18);
+      --shadow:0 14px 40px rgba(16,34,46,.12);
+      --shadow-soft:0 8px 24px rgba(16,34,46,.08);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+      --radius-sm:10px;
+      --max:1280px;
+    }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(77,182,214,.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(255,138,0,.10), transparent 20%),
+        linear-gradient(180deg, var(--bg) 0%, #F8FCFF 40%, var(--bg2) 100%);
+    }
 
-<title>3D Doces</title>
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button,input{font-family:inherit}
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
+    }
 
-<style>
+    /* HEADER */
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(77,182,214,.12);
+    }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f2fbff;
-}
+    .header-inner{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
 
-header{
-background:#4DB6D6;
-color:white;
-padding:20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
 
-.logo{
-display:flex;
-align-items:center;
-gap:15px;
-}
+    .brand-icon{
+      width:74px;
+      height:74px;
+      border-radius:18px;
+      background:linear-gradient(135deg, var(--brand), #79D8F2);
+      padding:6px;
+      box-shadow:var(--shadow-soft);
+      overflow:hidden;
+      flex-shrink:0;
+    }
 
-.logo img{
-width:70px;
-}
+    .brand-icon img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius:14px;
+      background:rgba(255,255,255,.12);
+    }
 
-nav a{
-color:white;
-text-decoration:none;
-margin:10px;
-font-weight:bold;
-}
+    .brand-text h1{
+      margin:0;
+      font-size:30px;
+      line-height:1;
+      letter-spacing:-0.5px;
+    }
 
-.banner{
-text-align:center;
-padding:60px;
-background:#4DB6D6;
-color:white;
-}
+    .brand-text p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+    }
 
-.banner h1{
-font-size:50px;
-margin:0;
-}
+    .nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
 
-.botao{
-background:white;
-color:#4DB6D6;
-padding:15px 25px;
-border-radius:10px;
-font-weight:bold;
-text-decoration:none;
-display:inline-block;
-margin-top:20px;
-}
+    .nav a{
+      padding:12px 14px;
+      border-radius:999px;
+      font-weight:800;
+      color:#37515E;
+      transition:.18s ease;
+    }
 
-.produtos{
-padding:40px;
-}
+    .nav a:hover{
+      background:var(--brand-soft);
+      color:var(--brand-dark);
+    }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
+    .nav .cta{
+      background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color:#fff;
+      box-shadow:var(--shadow-soft);
+    }
 
-.card{
-background:white;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-padding:20px;
-text-align:center;
-}
+    /* HERO */
+    .hero{
+      padding:34px 0 22px;
+    }
 
-.card img{
-width:100%;
-border-radius:10px;
-}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:stretch;
+    }
 
-.card h3{
-margin:10px 0;
-}
+    .hero-main,.hero-side{
+      background:rgba(255,255,255,.94);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(77,182,214,.12);
+    }
 
-.card button{
-background:#4DB6D6;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:8px;
-cursor:pointer;
-}
+    .hero-main{
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
 
-.carrinho{
-background:white;
-padding:20px;
-margin:40px;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
+    .hero-main::after{
+      content:"";
+      position:absolute;
+      right:-60px;
+      top:-60px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(77,182,214,.18), transparent 65%);
+      pointer-events:none;
+    }
 
-footer{
-background:#333;
-color:white;
-text-align:center;
-padding:20px;
-}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand-dark);
+      font-size:13px;
+      font-weight:900;
+    }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:15px;
-border-radius:50%;
-font-size:30px;
-text-decoration:none;
-}
+    .pill::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--brand);
+      box-shadow:0 0 0 5px rgba(77,182,214,.16);
+    }
 
-</style>
+    .hero h2{
+      margin:18px 0 14px;
+      font-size:clamp(34px, 6vw, 64px);
+      line-height:1.02;
+      letter-spacing:-1.2px;
+      max-width:12ch;
+    }
 
+    .hero p{
+      margin:0;
+      font-size:18px;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:60ch;
+    }
+
+    .hero-actions{
+      margin-top:24px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:15px 18px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:15px;
+      transition:.18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color:#fff;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .btn-primary:hover{filter:brightness(.97)}
+    .btn-secondary{
+      background:var(--accent-soft);
+      color:#B76400;
+    }
+    .btn-secondary:hover{background:#ffe4c1}
+
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:26px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid rgba(77,182,214,.10);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:24px;
+      margin-bottom:4px;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .hero-side{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      justify-content:space-between;
+    }
+
+    .side-top{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .side-mascot{
+      width:96px;
+      height:96px;
+      border-radius:20px;
+      background:linear-gradient(135deg, var(--brand-soft), #fff);
+      padding:8px;
+      overflow:hidden;
+      border:1px solid rgba(77,182,214,.14);
+    }
+
+    .side-mascot img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .side-copy h3{
+      margin:0 0 8px;
+      font-size:24px;
+    }
+
+    .side-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .side-card{
+      background:linear-gradient(180deg, #fff, #fafdff);
+      border:1px solid rgba(77,182,214,.12);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .side-card h4{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .side-list{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    /* LAYOUT */
+    .layout{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:24px;
+      align-items:start;
+      padding:10px 0 40px;
+    }
+
+    /* SECTION HEAD */
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .section-head h3{
+      margin:0;
+      font-size:34px;
+      letter-spacing:-.6px;
+    }
+
+    .section-head p{
+      margin:8px 0 0;
+      color:var(--muted);
+    }
+
+    .search{
+      width:320px;
+      max-width:100%;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px 16px;
+      font-size:15px;
+      outline:none;
+      box-shadow:var(--shadow-soft);
+    }
+
+    /* PRODUCTS */
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .product{
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(77,182,214,.12);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .product:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow);
+    }
+
+    .product-media{
+      aspect-ratio:1.2/1;
+      background:linear-gradient(135deg, #e8f9ff, #fff);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .product-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .product-body{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      height:100%;
+    }
+
+    .chip{
+      display:inline-block;
+      width:max-content;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:#b76400;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .product-title{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+
+    .product-desc{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      flex:1;
+    }
+
+    .product-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-top:6px;
+    }
+
+    .price{
+      font-size:28px;
+      font-weight:900;
+      color:var(--brand-dark);
+      letter-spacing:-.5px;
+    }
+
+    .add-btn{
+      border:none;
+      background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color:#fff;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:900;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .add-btn:hover{filter:brightness(.97)}
+
+    /* SIDEBAR CART */
+    .sidebar{
+      position:sticky;
+      top:108px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .cart,
+    .about-box,
+    .contact-box{
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(77,182,214,.12);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .cart-head{
+      padding:20px 20px 14px;
+      border-bottom:1px solid rgba(77,182,214,.10);
+    }
+
+    .cart-head h4{
+      margin:0;
+      font-size:24px;
+    }
+
+    .cart-head p{
+      margin:8px 0 0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .cart-list{
+      padding:10px 20px 0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      max-height:320px;
+      overflow:auto;
+    }
+
+    .cart-empty{
+      color:var(--muted);
+      padding:4px 0 18px;
+      line-height:1.6;
+    }
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      padding:12px;
+      border-radius:16px;
+      background:#fafdff;
+      border:1px solid rgba(77,182,214,.10);
+    }
+
+    .cart-item strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:4px;
+    }
+
+    .cart-item span{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .qty-controls{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:8px;
+    }
+
+    .qty-controls button{
+      width:28px;
+      height:28px;
+      border:none;
+      border-radius:8px;
+      background:var(--brand-soft);
+      color:var(--brand-dark);
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .cart-price{
+      font-weight:900;
+      color:var(--brand-dark);
+      white-space:nowrap;
+      align-self:start;
+    }
+
+    .cart-bottom{
+      padding:18px 20px 20px;
+      border-top:1px solid rgba(77,182,214,.10);
+      margin-top:14px;
+      background:linear-gradient(180deg, #fff, #fbfeff);
+    }
+
+    .total-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:16px;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    .total-row strong{
+      font-size:28px;
+      color:var(--brand-dark);
+    }
+
+    .checkout{
+      width:100%;
+      border:none;
+      background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color:#fff;
+      padding:16px 18px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .checkout:hover{filter:brightness(.97)}
+
+    .clear-cart{
+      width:100%;
+      border:none;
+      background:#eef8fc;
+      color:var(--brand-dark);
+      padding:13px 16px;
+      border-radius:12px;
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    /* SIDE BOXES */
+    .about-box,
+    .contact-box{
+      padding:20px;
+    }
+
+    .about-box h4,
+    .contact-box h4{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .about-box p,
+    .contact-box p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .contact-box .line{
+      margin-top:12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .contact-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#fafdff;
+      border:1px solid rgba(77,182,214,.10);
+      font-weight:800;
+      color:#35515e;
+    }
+
+    /* FOOTER */
+    .footer{
+      margin-top:24px;
+      padding:26px 0 36px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    /* FLOATING WHATSAPP */
+    .wa-float{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#25D366;
+      color:#fff;
+      font-size:30px;
+      box-shadow:0 12px 28px rgba(37,211,102,.35);
+      z-index:120;
+    }
+
+    .wa-float:hover{filter:brightness(.97)}
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+      .sidebar{
+        position:static;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-grid,
+      .hero-stats,
+      .products-grid{
+        grid-template-columns:1fr;
+      }
+      .hero h2{
+        max-width:none;
+      }
+    }
+
+    @media (max-width: 620px){
+      .brand-icon{
+        width:62px;
+        height:62px;
+      }
+      .brand-text h1{
+        font-size:24px;
+      }
+      .hero-main,
+      .hero-side{
+        padding:22px;
+      }
+      .hero h2{
+        font-size:34px;
+      }
+      .section-head h3{
+        font-size:28px;
+      }
+      .product-title{
+        font-size:20px;
+      }
+      .price{
+        font-size:24px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<header>
-
-<div class="logo">
-
-<img src="mascote.png">
-
-<h2>3D Doces</h2>
-
-</div>
-
-<nav>
-
-<a href="#produtos">Doces</a>
-<a href="#contato">Contato</a>
-
-</nav>
-
-</header>
-
-
-<section class="banner">
-
-<h1>3D Doces</h1>
-
-<p>Doces feitos com capricho</p>
-
-<a class="botao" href="https://instagram.com/3d_doces.ofc">
-Nos siga no Instagram
-</a>
-
-</section>
-
-
-<section id="produtos" class="produtos">
-
-<h2>Nossos Doces</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Brigadeiro</h3>
-<p>R$4,50</p>
-<button onclick="add('Brigadeiro')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Beijinho</h3>
-<p>R$4,50</p>
-<button onclick="add('Beijinho')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Brownie</h3>
-<p>R$8,00</p>
-<button onclick="add('Brownie')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Bolo no pote</h3>
-<p>R$12</p>
-<button onclick="add('Bolo no pote')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Trufa</h3>
-<p>R$6</p>
-<button onclick="add('Trufa')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Caixa 12 doces</h3>
-<p>R$45</p>
-<button onclick="add('Caixa 12 doces')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Caixa 24 doces</h3>
-<p>R$85</p>
-<button onclick="add('Caixa 24 doces')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Cajuzinho</h3>
-<p>R$4,50</p>
-<button onclick="add('Cajuzinho')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Doce de leite</h3>
-<p>R$5</p>
-<button onclick="add('Doce de leite')">Adicionar</button>
-</div>
-
-<div class="card">
-<img src="brigadeiro.png">
-<h3>Kit festa</h3>
-<p>R$120</p>
-<button onclick="add('Kit festa')">Adicionar</button>
-</div>
-
-</div>
-
-</section>
-
-
-<div class="carrinho">
-
-<h2>Carrinho</h2>
-
-<ul id="lista"></ul>
-
-<button onclick="enviar()">
-Finalizar pedido
-</button>
-
-</div>
-
-
-<section id="contato" style="padding:40px">
-
-<h2>Contato</h2>
-
-<p>
-
-Instagram  
-<a href="https://instagram.com/3d_doces.ofc">
-@3d_doces.ofc
-</a>
-
-</p>
-
-<p>
-
-WhatsApp  
-<a href="https://wa.me/5511997510976">
-+55 11 99751-0976
-</a>
-
-</p>
-
-</section>
-
-
-<footer>
-
-3D Doces © 2026
-
-</footer>
-
-
-<a class="whatsapp" href="https://wa.me/5511997510976">
-
-📱
-
-</a>
-
-
-<script>
-
-let carrinho = [];
-
-function add(produto){
-
-carrinho.push(produto);
-
-let lista = document.getElementById("lista");
-
-let item = document.createElement("li");
-
-item.innerText = produto;
-
-lista.appendChild(item);
-
-}
-
-function enviar(){
-
-let mensagem = "Olá! Quero pedir: " + carrinho.join(", ");
-
-let link = "https://wa.me/5511997510976?text=" + encodeURIComponent(mensagem);
-
-window.open(link);
-
-}
-
-</script>
-
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <img src="mascote.png" alt="Mascote 3D Doces" onerror="this.style.display='none'">
+        </div>
+        <div class="brand-text">
+          <h1>3D Doces</h1>
+          <p>Doces feitos com capricho</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#catalogo">Produtos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a class="cta" href="https://instagram.com/3d_doces.ofc" target="_blank">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-main">
+        <span class="pill">Loja online pronta para vender</span>
+        <h2>Seu doce favorito, com visual de marca grande.</h2>
+        <p>
+          A 3D Doces agora tem presença de verdade: vitrine forte, identidade clara, pedido rápido e um visual muito mais profissional. Escolha os produtos, monte seu carrinho e finalize no WhatsApp.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
+          <a class="btn btn-secondary" href="https://instagram.com/3d_doces.ofc" target="_blank">Seguir no Instagram</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>10</strong>
+            <span>produtos no catálogo</span>
+          </div>
+          <div class="stat">
+            <strong>1 clique</strong>
+            <span>para adicionar ao carrinho</span>
+          </div>
+          <div class="stat">
+            <strong>WhatsApp</strong>
+            <span>pedido final instantâneo</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="side-top">
+          <div class="side-mascot">
+            <img src="mascote.png" alt="Mascote" onerror="this.style.display='none'">
+          </div>
+          <div class="side-copy">
+            <h3>3D Doces</h3>
+            <p>Uma marca jovem, forte e visualmente marcante, com a cor da forminha azul como assinatura.</p>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h4>O que esse site já faz</h4>
+          <ul class="side-list">
+            <li>Catálogo bonito e moderno</li>
+            <li>Carrinho com total automático</li>
+            <li>Finalização pelo WhatsApp</li>
+            <li>Instagram integrado</li>
+            <li>Layout de marca grande</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="container layout">
+    <section>
+      <div id="catalogo" class="section-head">
+        <div>
+          <h3>Nossos doces</h3>
+          <p>Escolha seus produtos e monte o pedido.</p>
+        </div>
+        <input id="search" class="search" type="text" placeholder="Buscar produto..." />
+      </div>
+
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="cart">
+        <div class="cart-head">
+          <h4>Carrinho</h4>
+          <p>Veja seus itens e finalize o pedido direto no WhatsApp.</p>
+        </div>
+
+        <div id="cartList" class="cart-list">
+          <div class="cart-empty">Seu carrinho está vazio.</div>
+        </div>
+
+        <div class="cart-bottom">
+          <div class="total-row">
+            <span>Total</span>
+            <strong id="cartTotal">R$ 0,00</strong>
+          </div>
+
+          <button class="checkout" onclick="checkout()">
+            Finalizar pedido
+          </button>
+          <button class="clear-cart" onclick="clearCart()">
+            Limpar carrinho
+          </button>
+        </div>
+      </div>
+
+      <div id="sobre" class="about-box">
+        <h4>Sobre a 3D Doces</h4>
+        <p>
+          A 3D Doces nasceu de uma ideia que foi crescendo, evoluindo e ganhando forma. O mascote e a identidade visual ajudam a transformar o projeto em algo memorável. Depois vocês podem me mandar o texto oficial e eu deixo essa parte perfeita.
+        </p>
+      </div>
+
+      <div id="contato" class="contact-box">
+        <h4>Contato</h4>
+        <div class="line">
+          <a class="contact-link" href="https://instagram.com/3d_doces.ofc" target="_blank">
+            📸 @3d_doces.ofc
+          </a>
+          <a class="contact-link" href="https://wa.me/5511997510976" target="_blank">
+            📱 +55 11 99751-0976
+          </a>
+          <div class="contact-link">
+            🎨 Cor da marca: azul da forminha
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    3D Doces © 2026
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/5511997510976" target="_blank">📱</a>
+
+  <script>
+    const WHATSAPP = "5511997510976";
+
+    const products = [
+      {
+        id: 1,
+        name: "Brigadeiro Tradicional",
+        category: "Mais vendido",
+        description: "Brigadeiro clássico, macio e coberto com granulado.",
+        price: 4.50,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 2,
+        name: "Beijinho",
+        category: "Clássico",
+        description: "Beijinho cremoso com coco e acabamento delicado.",
+        price: 4.50,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 3,
+        name: "Brownie",
+        category: "Chocolate",
+        description: "Brownie macio por dentro e intenso no sabor.",
+        price: 8.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 4,
+        name: "Bolo no Pote",
+        category: "Queridinho",
+        description: "Camadas de massa e recheio, ótimo para vender muito.",
+        price: 12.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 5,
+        name: "Trufa Especial",
+        category: "Premium",
+        description: "Trufa recheada com sabor marcante e apresentação bonita.",
+        price: 6.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 6,
+        name: "Caixa 12 Doces",
+        category: "Presente",
+        description: "Perfeita para presentear ou dividir em família.",
+        price: 45.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 7,
+        name: "Caixa 24 Doces",
+        category: "Festa",
+        description: "Mais variedade para encontros e eventos.",
+        price: 85.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 8,
+        name: "Cajuzinho",
+        category: "Tradicional",
+        description: "Doce clássico de festa com sabor marcante.",
+        price: 4.50,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 9,
+        name: "Doce de Leite",
+        category: "Cremoso",
+        description: "Doce delicado e saboroso com textura suave.",
+        price: 5.00,
+        image: "brigadeiro.png"
+      },
+      {
+        id: 10,
+        name: "Kit Festa",
+        category: "Encomenda",
+        description: "Kit completo para festas e comemorações.",
+        price: 120.00,
+        image: "brigadeiro.png"
+      }
+    ];
+
+    let cart = [];
+
+    function money(value){
+      return value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function renderProducts(list = products){
+      const grid = document.getElementById("productsGrid");
+      grid.innerHTML = "";
+
+      list.forEach(product => {
+        const el = document.createElement("article");
+        el.className = "product";
+        el.innerHTML = `
+          <div class="product-media">
+            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/800x600/e8f9ff/2d9cbe?text=3D+Doces'">
+          </div>
+          <div class="product-body">
+            <span class="chip">${product.category}</span>
+            <h4 class="product-title">${product.name}</h4>
+            <p class="product-desc">${product.description}</p>
+            <div class="product-footer">
+              <div class="price">${money(product.price)}</div>
+              <button class="add-btn" onclick="addToCart(${product.id})">Adicionar</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function addToCart(productId){
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item => item.id === productId);
+
+      if(existing){
+        existing.qty += 1;
+      } else {
+        cart.push({...product, qty: 1});
+      }
+
+      renderCart();
+    }
+
+    function changeQty(productId, delta){
+      const item = cart.find(i => i.id === productId);
+      if(!item) return;
+
+      item.qty += delta;
+
+      if(item.qty <= 0){
+        cart = cart.filter(i => i.id !== productId);
+      }
+
+      renderCart();
+    }
+
+    function clearCart(){
+      cart = [];
+      renderCart();
+    }
+
+    function renderCart(){
+      const cartList = document.getElementById("cartList");
+      const cartTotal = document.getElementById("cartTotal");
+
+      if(cart.length === 0){
+        cartList.innerHTML = `<div class="cart-empty">Seu carrinho está vazio.</div>`;
+        cartTotal.textContent = "R$ 0,00";
+        return;
+      }
+
+      cartList.innerHTML = "";
+
+      cart.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>
+            <strong>${item.name}</strong>
+            <span>${money(item.price)} cada</span>
+            <div class="qty-controls">
+              <button onclick="changeQty(${item.id}, -1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+          <div class="cart-price">${money(item.price * item.qty)}</div>
+        `;
+        cartList.appendChild(row);
+      });
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotal.textContent = money(total);
+    }
+
+    function checkout(){
+      if(cart.length === 0){
+        alert("Seu carrinho está vazio.");
+        return;
+      }
+
+      let message = "Olá! Quero fazer um pedido na 3D Doces.%0A%0A";
+      cart.forEach(item => {
+        message += `• ${item.name} x${item.qty} - ${money(item.price * item.qty)}%0A`;
+      });
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      message += `%0ATotal estimado: ${money(total)}%0A`;
+      message += `%0AInstagram: @3d_doces.ofc`;
+
+      const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(decodeURIComponent(message))}`;
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("search").addEventListener("input", function(){
+      const term = this.value.toLowerCase().trim();
+
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(term) ||
+        p.category.toLowerCase().includes(term) ||
+        p.description.toLowerCase().includes(term)
+      );
+
+      renderProducts(filtered);
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
 </body>
-
 </html>
