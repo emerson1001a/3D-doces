@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>3D Doces</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f2fbff;
+}
+
+header{
+background:#4DB6D6;
+color:white;
+padding:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo img{
+width:70px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:10px;
+font-weight:bold;
+}
+
+.banner{
+text-align:center;
+padding:60px;
+background:#4DB6D6;
+color:white;
+}
+
+.banner h1{
+font-size:50px;
+margin:0;
+}
+
+.botao{
+background:white;
+color:#4DB6D6;
+padding:15px 25px;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+display:inline-block;
+margin-top:20px;
+}
+
+.produtos{
+padding:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+padding:20px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.card button{
+background:#4DB6D6;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.carrinho{
+background:white;
+padding:20px;
+margin:40px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+footer{
+background:#333;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:30px;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="mascote.png">
+
+<h2>3D Doces</h2>
+
+</div>
+
+<nav>
+
+<a href="#produtos">Doces</a>
+<a href="#contato">Contato</a>
+
+</nav>
+
+</header>
+
+
+<section class="banner">
+
+<h1>3D Doces</h1>
+
+<p>Doces feitos com capricho</p>
+
+<a class="botao" href="https://instagram.com/3d_doces.ofc">
+Nos siga no Instagram
+</a>
+
+</section>
+
+
+<section id="produtos" class="produtos">
+
+<h2>Nossos Doces</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Brigadeiro</h3>
+<p>R$4,50</p>
+<button onclick="add('Brigadeiro')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Beijinho</h3>
+<p>R$4,50</p>
+<button onclick="add('Beijinho')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Brownie</h3>
+<p>R$8,00</p>
+<button onclick="add('Brownie')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Bolo no pote</h3>
+<p>R$12</p>
+<button onclick="add('Bolo no pote')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Trufa</h3>
+<p>R$6</p>
+<button onclick="add('Trufa')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Caixa 12 doces</h3>
+<p>R$45</p>
+<button onclick="add('Caixa 12 doces')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Caixa 24 doces</h3>
+<p>R$85</p>
+<button onclick="add('Caixa 24 doces')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Cajuzinho</h3>
+<p>R$4,50</p>
+<button onclick="add('Cajuzinho')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Doce de leite</h3>
+<p>R$5</p>
+<button onclick="add('Doce de leite')">Adicionar</button>
+</div>
+
+<div class="card">
+<img src="brigadeiro.png">
+<h3>Kit festa</h3>
+<p>R$120</p>
+<button onclick="add('Kit festa')">Adicionar</button>
+</div>
+
+</div>
+
+</section>
+
+
+<div class="carrinho">
+
+<h2>Carrinho</h2>
+
+<ul id="lista"></ul>
+
+<button onclick="enviar()">
+Finalizar pedido
+</button>
+
+</div>
+
+
+<section id="contato" style="padding:40px">
+
+<h2>Contato</h2>
+
+<p>
+
+Instagram  
+<a href="https://instagram.com/3d_doces.ofc">
+@3d_doces.ofc
+</a>
+
+</p>
+
+<p>
+
+WhatsApp  
+<a href="https://wa.me/5511997510976">
++55 11 99751-0976
+</a>
+
+</p>
+
+</section>
+
+
+<footer>
+
+3D Doces © 2026
+
+</footer>
+
+
+<a class="whatsapp" href="https://wa.me/5511997510976">
+
+📱
+
+</a>
+
+
+<script>
+
+let carrinho = [];
+
+function add(produto){
+
+carrinho.push(produto);
+
+let lista = document.getElementById("lista");
+
+let item = document.createElement("li");
+
+item.innerText = produto;
+
+lista.appendChild(item);
+
+}
+
+function enviar(){
+
+let mensagem = "Olá! Quero pedir: " + carrinho.join(", ");
+
+let link = "https://wa.me/5511997510976?text=" + encodeURIComponent(mensagem);
+
+window.open(link);
+
+}
+
+</script>
+
+</body>
+
+</html>
