@@ -12,19 +12,14 @@
       --brand-soft:#EAF8FD;
       --accent:#FF8A00;
       --accent-soft:#FFF1E2;
-      --bg:#f6fbff;
-      --bg2:#fff9fc;
-      --text:#1f2d36;
+      --bg:#F6FBFF;
+      --text:#1F2D36;
       --muted:#647684;
-      --white:#ffffff;
+      --white:#FFFFFF;
       --line:rgba(77,182,214,.16);
       --shadow:0 14px 40px rgba(16,34,46,.12);
       --shadow-soft:0 8px 24px rgba(16,34,46,.08);
-      --radius-xl:30px;
-      --radius-lg:22px;
-      --radius-md:16px;
-      --radius-sm:12px;
-      --max:1320px;
+      --max:1280px;
     }
 
     *{box-sizing:border-box}
@@ -35,13 +30,13 @@
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(77,182,214,.10), transparent 24%),
-        radial-gradient(circle at top right, rgba(255,138,0,.08), transparent 20%),
-        linear-gradient(180deg, var(--bg) 0%, #ffffff 55%, var(--bg2) 100%);
+        radial-gradient(circle at top right, rgba(255,138,0,.08), transparent 18%),
+        linear-gradient(180deg, var(--bg) 0%, #ffffff 60%, #fff9fc 100%);
     }
 
     img{display:block;max-width:100%}
-    a{text-decoration:none;color:inherit}
     button,input,textarea{font-family:inherit}
+    a{text-decoration:none;color:inherit}
 
     .container{
       width:min(var(--max), 94%);
@@ -52,7 +47,7 @@
       position:fixed;
       top:20px;
       left:50%;
-      transform:translateX(-50%) translateY(-16px);
+      transform:translateX(-50%) translateY(-20px);
       background:#1f2d36;
       color:#fff;
       padding:14px 18px;
@@ -62,7 +57,7 @@
       opacity:0;
       pointer-events:none;
       transition:.25s ease;
-      z-index:200;
+      z-index:300;
     }
 
     .toast.show{
@@ -80,11 +75,11 @@
     }
 
     .header-inner{
-      min-height:86px;
+      min-height:84px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:18px;
+      gap:16px;
       flex-wrap:wrap;
       padding:8px 0;
     }
@@ -96,22 +91,21 @@
     }
 
     .brand-icon{
-      width:78px;
-      height:78px;
-      border-radius:20px;
+      width:76px;
+      height:76px;
+      border-radius:18px;
       background:linear-gradient(135deg, var(--brand), #79D8F2);
       padding:6px;
       box-shadow:var(--shadow-soft);
-      overflow:hidden;
-      flex-shrink:0;
       animation:floatMascot 2.6s ease-in-out infinite alternate;
+      cursor:pointer;
     }
 
     .brand-icon img{
       width:100%;
       height:100%;
       object-fit:contain;
-      border-radius:16px;
+      border-radius:14px;
       background:rgba(255,255,255,.15);
     }
 
@@ -120,14 +114,14 @@
       to{transform:translateY(-6px)}
     }
 
-    .brand-text h1{
+    .brand-copy h1{
       margin:0;
-      font-size:31px;
+      font-size:30px;
       line-height:1;
-      letter-spacing:-.7px;
+      letter-spacing:-.6px;
     }
 
-    .brand-text p{
+    .brand-copy p{
       margin:6px 0 0;
       color:var(--muted);
       font-size:14px;
@@ -157,13 +151,13 @@
       color:#fff;
     }
 
-    .cart-mini{
+    .cart-pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
     }
 
-    .cart-count{
+    .count{
       min-width:24px;
       height:24px;
       border-radius:999px;
@@ -178,7 +172,7 @@
     }
 
     .hero{
-      padding:26px 0 20px;
+      padding:24px 0 20px;
     }
 
     .hero-grid{
@@ -230,14 +224,14 @@
       height:10px;
       border-radius:50%;
       background:var(--brand);
-      box-shadow:0 0 0 5px rgba(77,182,214,.15);
+      box-shadow:0 0 0 5px rgba(77,182,214,.14);
     }
 
     .hero-main h2{
       margin:18px 0 14px;
-      font-size:clamp(36px, 6vw, 68px);
+      font-size:clamp(36px, 6vw, 66px);
       line-height:1;
-      letter-spacing:-1.5px;
+      letter-spacing:-1.4px;
       max-width:11ch;
     }
 
@@ -329,6 +323,7 @@
       border:1px solid rgba(77,182,214,.14);
       padding:10px;
       animation:floatMascot 2.6s ease-in-out infinite alternate;
+      cursor:pointer;
     }
 
     .hero-mascot img{
@@ -367,14 +362,11 @@
       line-height:1.8;
     }
 
-    .categories{
-      padding:4px 0 18px;
-    }
-
     .category-row{
       display:grid;
-      grid-template-columns:repeat(6,1fr);
+      grid-template-columns:repeat(4,1fr);
       gap:12px;
+      padding:4px 0 18px;
     }
 
     .category-btn{
@@ -382,7 +374,7 @@
       border:1px solid rgba(77,182,214,.12);
       box-shadow:var(--shadow-soft);
       border-radius:18px;
-      padding:18px 12px;
+      padding:16px 12px;
       text-align:center;
       cursor:pointer;
       transition:.18s ease;
@@ -452,6 +444,58 @@
       font-size:15px;
       outline:none;
       box-shadow:var(--shadow-soft);
+    }
+
+    .featured-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .featured-box{
+      background:#fff;
+      border:1px solid rgba(77,182,214,.10);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .featured-box img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .featured-content{
+      padding:18px;
+    }
+
+    .featured-badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff3dd;
+      color:#b76400;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .featured-content h4{
+      margin:0 0 8px;
+      font-size:24px;
+    }
+
+    .featured-content p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .featured-price{
+      color:var(--brand-dark);
+      font-size:24px;
+      font-weight:900;
     }
 
     .products-grid{
@@ -550,58 +594,6 @@
       box-shadow:var(--shadow-soft);
     }
 
-    .featured-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-
-    .featured-box{
-      background:#fff;
-      border:1px solid rgba(77,182,214,.10);
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .featured-box img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-    }
-
-    .featured-content{
-      padding:18px;
-    }
-
-    .featured-badge{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background:#fff3dd;
-      color:#b76400;
-      font-size:12px;
-      font-weight:900;
-      margin-bottom:10px;
-    }
-
-    .featured-content h4{
-      margin:0 0 8px;
-      font-size:24px;
-    }
-
-    .featured-content p{
-      margin:0 0 12px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .featured-price{
-      color:var(--brand-dark);
-      font-size:24px;
-      font-weight:900;
-    }
-
     .gallery{
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -616,36 +608,13 @@
       box-shadow:var(--shadow-soft);
     }
 
-    .reviews{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-    }
-
-    .review{
-      background:#fff;
-      border:1px solid rgba(77,182,214,.10);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .stars{
-      color:#ffb400;
-      font-size:20px;
-      margin-bottom:8px;
-    }
-
-    .review p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .review strong{
-      display:block;
-      margin-top:10px;
-      font-size:14px;
+    .cart,
+    .box{
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(77,182,214,.12);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
     .sidebar{
@@ -654,15 +623,6 @@
       display:flex;
       flex-direction:column;
       gap:18px;
-    }
-
-    .cart,
-    .box{
-      background:rgba(255,255,255,.97);
-      border:1px solid rgba(77,182,214,.12);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
     }
 
     .cart-head{
@@ -912,10 +872,9 @@
       .hero-grid,
       .hero-stats,
       .category-row,
-      .products-grid,
       .featured-grid,
-      .gallery,
-      .reviews{
+      .products-grid,
+      .gallery{
         grid-template-columns:1fr;
       }
       .hero-main h2{
@@ -935,7 +894,7 @@
         width:64px;
         height:64px;
       }
-      .brand-text h1{
+      .brand-copy h1{
         font-size:25px;
       }
       .hero-main,
@@ -960,10 +919,10 @@
   <header class="header">
     <div class="container header-inner">
       <div class="brand">
-        <div class="brand-icon">
+        <div class="brand-icon" onclick="mascotSpeak()">
           <img src="mascote.png" alt="Mascote 3D Doces">
         </div>
-        <div class="brand-text">
+        <div class="brand-copy">
           <h1>3D Doces</h1>
           <p>Doces feitos com capricho</p>
         </div>
@@ -972,10 +931,10 @@
       <div class="top-actions">
         <button class="top-btn" onclick="scrollToSection('catalogo')">Produtos</button>
         <button class="top-btn" onclick="scrollToSection('destaques')">Destaques</button>
-        <button class="top-btn" onclick="scrollToSection('galeria')">Galeria</button>
+        <button class="top-btn" onclick="scrollToSection('carto')">Carrinho</button>
         <a class="top-btn" href="https://instagram.com/3d_doces.ofc" target="_blank">Instagram</a>
-        <button class="top-btn cart-mini" onclick="scrollToSection('carto')">
-          Carrinho <span id="topCartCount" class="cart-count">0</span>
+        <button class="top-btn cart-pill" onclick="scrollToSection('carto')">
+          Carrinho <span id="topCartCount" class="count">0</span>
         </button>
         <a class="top-btn primary" href="https://wa.me/5511997510976" target="_blank">WhatsApp</a>
       </div>
@@ -985,10 +944,10 @@
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-main">
-        <span class="pill">App de pedidos da 3D Doces</span>
-        <h2>Peça seus doces com experiência de app.</h2>
+        <span class="pill">Visual tipo app</span>
+        <h2>Peça seus doces com cara de aplicativo.</h2>
         <p>
-          Um site grande, bonito e com cara de aplicativo: escolha por categorias, veja destaques, monte o carrinho e finalize o pedido pelo WhatsApp com seus dados completos.
+          Escolha por categorias, veja destaques, monte seu carrinho e finalize o pedido pelo WhatsApp com seus dados completos.
         </p>
 
         <div class="hero-actions">
@@ -998,7 +957,7 @@
 
         <div class="hero-stats">
           <div class="stat">
-            <strong id="heroProductsCount">8</strong>
+            <strong id="heroProductsCount">11</strong>
             <span>produtos no catálogo</span>
           </div>
           <div class="stat">
@@ -1014,12 +973,12 @@
 
       <div class="hero-side">
         <div class="hero-side-top">
-          <div class="hero-mascot">
+          <div class="hero-mascot" onclick="mascotSpeak()">
             <img src="mascote.png" alt="Mascote 3D Doces">
           </div>
           <div>
             <h3>Nosso mascote</h3>
-            <p>Agora o site usa o mascote certo da marca e passa muito mais identidade e confiança.</p>
+            <p>Clique no mascote para ele falar. Isso deixa o site mais vivo e com mais identidade.</p>
           </div>
         </div>
 
@@ -1038,33 +997,23 @@
     </div>
   </section>
 
-  <section class="categories">
-    <div class="container">
-      <div class="category-row">
-        <div class="category-btn active" onclick="filterCategory('Todos', this)">
-          <div class="category-icon">🍬</div>
-          <strong>Todos</strong>
-        </div>
-        <div class="category-btn" onclick="filterCategory('Mais vendido', this)">
-          <div class="category-icon">🔥</div>
-          <strong>Mais vendido</strong>
-        </div>
-        <div class="category-btn" onclick="filterCategory('Clássico', this)">
-          <div class="category-icon">🍫</div>
-          <strong>Clássicos</strong>
-        </div>
-        <div class="category-btn" onclick="filterCategory('Chocolate', this)">
-          <div class="category-icon">🍪</div>
-          <strong>Chocolate</strong>
-        </div>
-        <div class="category-btn" onclick="filterCategory('Presente', this)">
-          <div class="category-icon">🎁</div>
-          <strong>Presentes</strong>
-        </div>
-        <div class="category-btn" onclick="filterCategory('Encomenda', this)">
-          <div class="category-icon">🎉</div>
-          <strong>Festas</strong>
-        </div>
+  <section class="container">
+    <div class="category-row">
+      <div class="category-btn active" onclick="filterCategory('Todos', this)">
+        <div class="category-icon">🍬</div>
+        <strong>Todos</strong>
+      </div>
+      <div class="category-btn" onclick="filterCategory('Cookie', this)">
+        <div class="category-icon">🍪</div>
+        <strong>Cookies</strong>
+      </div>
+      <div class="category-btn" onclick="filterCategory('Chocolate', this)">
+        <div class="category-icon">🍫</div>
+        <strong>Chocolate</strong>
+      </div>
+      <div class="category-btn" onclick="filterCategory('Sacolé', this)">
+        <div class="category-icon">🧊</div>
+        <strong>Sacolés</strong>
       </div>
     </div>
   </section>
@@ -1075,28 +1024,28 @@
         <div class="section-head">
           <div>
             <h3>Destaques da loja</h3>
-            <p>Os produtos que chamam mais atenção e ajudam a vender mais.</p>
+            <p>Os produtos que mais chamam atenção.</p>
           </div>
         </div>
 
         <div class="featured-grid">
           <div class="featured-box">
-            <img src="brigadeiro.jpg" alt="Brigadeiro Tradicional">
+            <img src="cookie-nutella.jpg" alt="Cookie Nutella" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;height:220px;display:flex;align-items:center;justify-content:center;background:#eef8fc;color:#5f7480;font-weight:700;&quot;>Foto do produto</div>';">
             <div class="featured-content">
-              <span class="featured-badge">Mais vendido</span>
-              <h4>Brigadeiro Tradicional</h4>
-              <p>O produto mais fácil de vender, ótimo para puxar o cliente para o pedido.</p>
-              <div class="featured-price">R$ 4,50</div>
+              <span class="featured-badge">Destaque</span>
+              <h4>Cookie Nutella</h4>
+              <p>Produto forte visualmente e ótimo para chamar o cliente logo no início.</p>
+              <div class="featured-price">R$ 10,00</div>
             </div>
           </div>
 
           <div class="featured-box">
-            <img src="kit-festa.jpg" alt="Kit Festa">
+            <img src="brownie.jpg" alt="Brownie" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;height:220px;display:flex;align-items:center;justify-content:center;background:#eef8fc;color:#5f7480;font-weight:700;&quot;>Foto do produto</div>';">
             <div class="featured-content">
-              <span class="featured-badge">Ticket maior</span>
-              <h4>Kit Festa</h4>
-              <p>Ideal para aniversário, encontro e encomendas maiores. Produto forte para aumentar valor do pedido.</p>
-              <div class="featured-price">R$ 120,00</div>
+              <span class="featured-badge">Clássico forte</span>
+              <h4>Brownie</h4>
+              <p>Produto de compra fácil, boa saída e visual marcante para o site.</p>
+              <div class="featured-price">R$ 8,00</div>
             </div>
           </div>
         </div>
@@ -1106,7 +1055,7 @@
         <div class="section-head">
           <div>
             <h3>Nosso catálogo</h3>
-            <p>Escolha os produtos e monte seu pedido.</p>
+            <p>Escolha seus produtos e monte o pedido.</p>
           </div>
           <input id="search" class="search" type="text" placeholder="Buscar produto..." />
         </div>
@@ -1117,73 +1066,30 @@
       <div class="section-card">
         <div class="section-head">
           <div>
-            <h3>Combos e caixas</h3>
-            <p>Seção pensada para vender mais volume.</p>
+            <h3>Linha de gelados</h3>
+            <p>Os sabores refrescantes da 3D Doces.</p>
           </div>
         </div>
 
         <div class="featured-grid">
           <div class="featured-box">
-            <img src="caixa-12.jpg" alt="Caixa 12 Doces">
+            <img src="sacole-morango.jpg" alt="Sacolé Morango" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;height:220px;display:flex;align-items:center;justify-content:center;background:#eef8fc;color:#5f7480;font-weight:700;&quot;>Foto do produto</div>';">
             <div class="featured-content">
-              <span class="featured-badge">Presente</span>
-              <h4>Caixa 12 Doces</h4>
-              <p>Ótima para presentear ou dividir com alguém. Produto de compra fácil.</p>
-              <div class="featured-price">R$ 45,00</div>
+              <span class="featured-badge">Refrescante</span>
+              <h4>Sacolés frutados</h4>
+              <p>Morango, manga, maracujá e limão para quem quer algo mais leve e gelado.</p>
+              <div class="featured-price">a partir de R$ 5,00</div>
             </div>
           </div>
 
           <div class="featured-box">
-            <img src="caixa-24.jpg" alt="Caixa 24 Doces">
+            <img src="sacole-nutella.jpg" alt="Sacolé Nutella" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;height:220px;display:flex;align-items:center;justify-content:center;background:#eef8fc;color:#5f7480;font-weight:700;&quot;>Foto do produto</div>';">
             <div class="featured-content">
-              <span class="featured-badge">Festa</span>
-              <h4>Caixa 24 Doces</h4>
-              <p>Mais quantidade para eventos, reuniões e encomendas maiores.</p>
-              <div class="featured-price">R$ 85,00</div>
+              <span class="featured-badge">Cremosos</span>
+              <h4>Sacolés cremosos</h4>
+              <p>Nutella, Ovomaltine e leite para quem prefere sabores mais intensos e encorpados.</p>
+              <div class="featured-price">a partir de R$ 5,00</div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="galeria" class="section-card">
-        <div class="section-head">
-          <div>
-            <h3>Galeria</h3>
-            <p>Mostre visual, capricho e variedade.</p>
-          </div>
-        </div>
-
-        <div class="gallery">
-          <img src="brigadeiro.jpg" alt="Brigadeiro">
-          <img src="beijinho.jpg" alt="Beijinho">
-          <img src="brownie.jpg" alt="Brownie">
-          <img src="bolo-pote.jpg" alt="Bolo no pote">
-        </div>
-      </div>
-
-      <div id="avaliacoes" class="section-card">
-        <div class="section-head">
-          <div>
-            <h3>Avaliações</h3>
-            <p>Confiança vende.</p>
-          </div>
-        </div>
-
-        <div class="reviews">
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>Doces muito bonitos e caprichados. Atendimento rápido e pedido fácil.</p>
-            <strong>Cliente 1</strong>
-          </div>
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>Gostei da apresentação e da facilidade para encomendar tudo pelo WhatsApp.</p>
-            <strong>Cliente 2</strong>
-          </div>
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <p>Perfeito para presentear e para festas. Ficou com cara de marca forte mesmo.</p>
-            <strong>Cliente 3</strong>
           </div>
         </div>
       </div>
@@ -1191,14 +1097,17 @@
       <div class="section-card">
         <div class="section-head">
           <div>
-            <h3>Encomendas para festas</h3>
-            <p>Texto pensado para vender eventos.</p>
+            <h3>Galeria</h3>
+            <p>Visual, capricho e variedade.</p>
           </div>
         </div>
 
-        <p style="margin:0;color:var(--muted);line-height:1.8">
-          Fazemos encomendas para aniversários, encontros, lembranças, presentes e eventos. Para orçamentos maiores, escolha os itens no site e envie o pedido com data, horário e observações no WhatsApp.
-        </p>
+        <div class="gallery">
+          <img src="cookie-nutella.jpg" alt="Cookie Nutella" onerror="this.style.display='none'">
+          <img src="brownie.jpg" alt="Brownie" onerror="this.style.display='none'">
+          <img src="palha-italiana.jpg" alt="Palha Italiana" onerror="this.style.display='none'">
+          <img src="sacole-morango.jpg" alt="Sacolé Morango" onerror="this.style.display='none'">
+        </div>
       </div>
     </section>
 
@@ -1245,28 +1154,6 @@
 
           <div class="grid-2">
             <div class="field">
-              <label for="bairro">Bairro</label>
-              <input id="bairro" placeholder="Bairro">
-            </div>
-            <div class="field">
-              <label for="cidade">Cidade</label>
-              <input id="cidade" placeholder="Cidade">
-            </div>
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
-              <label for="cep">CEP</label>
-              <input id="cep" placeholder="CEP">
-            </div>
-            <div class="field">
-              <label for="complemento">Complemento</label>
-              <input id="complemento" placeholder="Casa, apto, bloco...">
-            </div>
-          </div>
-
-          <div class="grid-2">
-            <div class="field">
               <label for="dataEntrega">Data</label>
               <input type="date" id="dataEntrega">
             </div>
@@ -1278,20 +1165,11 @@
 
           <div class="field">
             <label for="obs">Observações</label>
-            <textarea id="obs" placeholder="Ponto de referência, detalhes do pedido..."></textarea>
+            <textarea id="obs" placeholder="Detalhes do pedido..."></textarea>
           </div>
 
           <button class="checkout" onclick="checkout()">Finalizar pedido</button>
           <button class="clear-cart" onclick="clearCart()">Limpar carrinho</button>
-        </div>
-      </div>
-
-      <div class="box">
-        <div class="box-content">
-          <h4>Sobre a 3D Doces</h4>
-          <p>
-            A 3D Doces une sabor, apresentação e identidade forte. Essa versão foi pensada para ficar grande, bonita e com sensação de app de delivery.
-          </p>
         </div>
       </div>
 
@@ -1317,81 +1195,33 @@
   <script>
     const WHATSAPP = "5511997510976";
 
+    const mascotPhrases = [
+      "Olá! Escolha seus doces!",
+      "Os cookies estão incríveis hoje!",
+      "Monte seu pedido e finalize no WhatsApp!",
+      "Quer gelado? Olha os sacolés!",
+      "Brownie e cookie vendem muito!"
+    ];
+
     const products = [
-      {
-        id: 1,
-        name: "Brigadeiro Tradicional",
-        category: "Mais vendido",
-        description: "Brigadeiro clássico, macio e coberto com granulado.",
-        price: 4.50,
-        image: "brigadeiro.jpg"
-      },
-      {
-        id: 2,
-        name: "Beijinho",
-        category: "Clássico",
-        description: "Beijinho cremoso com coco e acabamento delicado.",
-        price: 4.50,
-        image: "beijinho.jpg"
-      },
-      {
-        id: 3,
-        name: "Brownie",
-        category: "Chocolate",
-        description: "Brownie macio por dentro e intenso no sabor.",
-        price: 8.00,
-        image: "brownie.jpg"
-      },
-      {
-        id: 4,
-        name: "Bolo no Pote",
-        category: "Queridinho",
-        description: "Camadas de massa e recheio com ótima apresentação.",
-        price: 12.00,
-        image: "bolo-pote.jpg"
-      },
-      {
-        id: 5,
-        name: "Trufa Especial",
-        category: "Clássico",
-        description: "Trufa recheada com sabor marcante e apresentação bonita.",
-        price: 6.00,
-        image: "trufa.jpg"
-      },
-      {
-        id: 6,
-        name: "Caixa 12 Doces",
-        category: "Presente",
-        description: "Perfeita para presentear ou dividir em família.",
-        price: 45.00,
-        image: "caixa-12.jpg"
-      },
-      {
-        id: 7,
-        name: "Caixa 24 Doces",
-        category: "Presente",
-        description: "Mais variedade para encontros e eventos.",
-        price: 85.00,
-        image: "caixa-24.jpg"
-      },
-      {
-        id: 8,
-        name: "Kit Festa",
-        category: "Encomenda",
-        description: "Kit completo para festas e comemorações.",
-        price: 120.00,
-        image: "kit-festa.jpg"
-      }
+      { id: 1, name: "Cookie Nutella", category: "Cookie", description: "Cookie recheado, mais intenso e mais marcante.", price: 10.00, image: "cookie-nutella.jpg" },
+      { id: 2, name: "Cookie Normal", category: "Cookie", description: "Cookie clássico, ótimo para venda rápida.", price: 8.00, image: "cookie-normal.jpg" },
+      { id: 3, name: "Brownie", category: "Chocolate", description: "Brownie macio por dentro e intenso no sabor.", price: 8.00, image: "brownie.jpg" },
+      { id: 4, name: "Palha Italiana", category: "Chocolate", description: "Doce em quadrados, cremoso e com biscoito.", price: 7.00, image: "palha-italiana.jpg" },
+      { id: 5, name: "Sacolé Morango", category: "Sacolé", description: "Gelado sabor morango, refrescante e frutado.", price: 5.00, image: "sacole-morango.jpg" },
+      { id: 6, name: "Sacolé Manga", category: "Sacolé", description: "Gelado sabor manga, tropical e leve.", price: 5.00, image: "sacole-manga.jpg" },
+      { id: 7, name: "Sacolé Maracujá", category: "Sacolé", description: "Gelado sabor maracujá, mais cítrico.", price: 5.00, image: "sacole-maracuja.jpg" },
+      { id: 8, name: "Sacolé Nutella", category: "Sacolé", description: "Gelado cremoso com perfil mais intenso.", price: 6.00, image: "sacole-nutella.jpg" },
+      { id: 9, name: "Sacolé Ovomaltine", category: "Sacolé", description: "Gelado cremoso com sabor marcante.", price: 6.00, image: "sacole-ovomaltine.jpg" },
+      { id: 10, name: "Sacolé Limão", category: "Sacolé", description: "Gelado mais leve, cítrico e refrescante.", price: 5.00, image: "sacole-limao.jpg" },
+      { id: 11, name: "Sacolé de Leite", category: "Sacolé", description: "Gelado cremoso, suave e clássico.", price: 5.00, image: "sacole-leite.jpg" }
     ];
 
     let cart = [];
     let currentCategory = "Todos";
 
     function money(value){
-      return value.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+      return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     }
 
     function showToast(text){
@@ -1402,6 +1232,11 @@
       showToast._timer = setTimeout(() => {
         toast.classList.remove("show");
       }, 1800);
+    }
+
+    function mascotSpeak(){
+      const phrase = mascotPhrases[Math.floor(Math.random() * mascotPhrases.length)];
+      showToast("🐦 " + phrase);
     }
 
     function scrollToSection(id){
@@ -1438,10 +1273,13 @@
       list.forEach(product => {
         const el = document.createElement("article");
         el.className = "product";
+
         el.innerHTML = `
           <div class="product-media">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.name}"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#eef8fc;color:#5f7480;font-weight:700;font-size:14px;text-align:center;padding:12px;&quot;>Foto do produto</div>';">
           </div>
+
           <div class="product-body">
             <span class="chip">${product.category}</span>
             <h4 class="product-title">${product.name}</h4>
@@ -1494,7 +1332,6 @@
       if(!item) return;
 
       item.qty += delta;
-
       if(item.qty <= 0){
         cart = cart.filter(i => i.id !== productId);
       }
@@ -1554,10 +1391,6 @@
       const telefone = document.getElementById("telefone").value.trim();
       const rua = document.getElementById("rua").value.trim();
       const numero = document.getElementById("numero").value.trim();
-      const bairro = document.getElementById("bairro").value.trim();
-      const cidade = document.getElementById("cidade").value.trim();
-      const cep = document.getElementById("cep").value.trim();
-      const complemento = document.getElementById("complemento").value.trim();
       const data = document.getElementById("dataEntrega").value.trim();
       const hora = document.getElementById("horaEntrega").value.trim();
       const obs = document.getElementById("obs").value.trim();
@@ -1575,9 +1408,6 @@
       lines.push("");
       lines.push("Endereço:");
       lines.push((rua || "Rua não informada") + (numero ? ", " + numero : ""));
-      lines.push((bairro || "Bairro não informado") + (cidade ? " - " + cidade : ""));
-      if(cep) lines.push("CEP: " + cep);
-      if(complemento) lines.push("Complemento: " + complemento);
       lines.push("");
       lines.push("Entrega:");
       if(data) lines.push("Data: " + data);
